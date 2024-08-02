@@ -5,23 +5,21 @@
     android:orientation="vertical">
 
     <!-- Área de Botões no topo -->
-
-    <!-- Área do WebView abaixo dos botões -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="?android:attr/windowBackground">
 
         <ImageButton
             android:id="@+id/BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:src="@drawable/lets_icons__back"
+            android:contentDescription="Refresh Button"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="Back Button"
-            android:elevation="8dp"
-            android:src="@drawable/lets_icons__back" />
+            android:elevation="8dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,27 +34,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/humbleicons__refresh"
                 android:contentDescription="Refresh Button"
-                android:elevation="8dp"
-                android:src="@drawable/humbleicons__refresh" />
-
-            <ImageButton
-                android:id="@+id/actionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:background="?attr/selectableItemBackground"
-                android:contentDescription="Action Button"
-                android:elevation="8dp"
-                android:src="@drawable/clarity__settings_line" />
+                android:elevation="8dp" />
 
 
 
         </LinearLayout>
+
+
+
     </LinearLayout>
 
-
+    <!-- Área do WebView abaixo dos botões -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
