@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="250px"
+        android:layout_height="wrap_content"
+        android:text="AROP"
+        android:textAlignment="center"
+
+        android:textSize="54sp"
+        android:layout_marginBottom="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="@font/jomhuria_regular" />
+    <TextView
+        android:id="@+id/SecondText"
+        android:layout_width="850px"
+        android:layout_height="wrap_content"
+        android:text="(APLICAÇÃO DE REGISTO DE ORDENS DE PRODUÇÃO)"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginBottom="30dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="@font/jomhuria_regular" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="16dp"
+            android:text="INSERIR OP"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"
+            android:elevation="8dp"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="16dp"
+            android:text="VER TABELA"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"
+            android:elevation="8dp" />
+    </LinearLayout>
+</LinearLayout>

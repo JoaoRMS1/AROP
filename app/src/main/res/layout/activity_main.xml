@@ -6,35 +6,67 @@
     android:padding="16dp">
 
     <!-- Área de Botões no topo -->
+
+    <!-- Área do WebView abaixo dos botões -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="?android:attr/windowBackground">
+        android:background="?android:attr/windowBackground"
+        android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/actionButton"
+            android:id="@+id/BackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:src="@drawable/clarity__settings_line"
-            android:contentDescription="Action Button"
             android:background="?attr/selectableItemBackground"
-            android:elevation="8dp" />
+            android:contentDescription="Back Button"
+            android:elevation="8dp"
+            android:src="@drawable/lets_icons__back" />
 
-        <ImageButton
-            android:id="@+id/refreshButton"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_margin="8dp"
             android:src="@drawable/humbleicons__refresh"
             android:contentDescription="Refresh Button"
             android:background="?attr/selectableItemBackground"
             android:elevation="8dp"
             android:visibility="gone" /> <!-- Inicialmente invisível -->
+=======
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+
+            <ImageButton
+                android:id="@+id/refreshButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Refresh Button"
+                android:elevation="8dp"
+                android:src="@drawable/humbleicons__refresh" />
+
+            <ImageButton
+                android:id="@+id/actionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Action Button"
+                android:elevation="8dp"
+                android:src="@drawable/clarity__settings_line" />
+
+
+
+        </LinearLayout>
+>>>>>>> 445face8b7615b364e79e2a93cb21fdd67f79230
     </LinearLayout>
 
-    <!-- Área do WebView abaixo dos botões -->
+
     <FrameLayout
         android:id="@+id/webview_container"
         android:layout_width="match_parent"
