@@ -1,13 +1,18 @@
 package com.example.arop;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
     private ImageButton actionButton;
     private ImageButton refreshButton;
+    private Button openFormsButton;
+    private Button openExcelButton;
+    private LinearLayout buttonContainer;
+    private FrameLayout webViewContainer;
     private final String correctPassword = "PHBP_2024"; // Altere para sua senha
     private final String PREFERENCES_NAME = "com.example.arop.PREFERENCES";
     private final String KEY_URL = "currentUrl";
@@ -33,21 +42,29 @@ public class MainActivity extends AppCompatActivity {
         webView = findViewById(R.id.webview);
         actionButton = findViewById(R.id.actionButton);
         refreshButton = findViewById(R.id.refreshButton);
+        openFormsButton = findViewById(R.id.open_forms_button);
+        openExcelButton = findViewById(R.id.open_excel_button);
+        buttonContainer = findViewById(R.id.button_container);
+        webViewContainer = findViewById(R.id.webview_container);
 
         // Carregar a URL salva do SharedPreferences ou usar uma URL padrão
         SharedPreferences preferences = getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE);
         currentUrl = preferences.getString(KEY_URL, defaultUrl);
 
-        if (currentUrl.equals(defaultUrl)) {
-            showToastForThreeSeconds("O URL do Forms precisa de ser atualizado");
-        }
+        // Configurar os botões
+        openFormsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadWebView(currentUrl);
+            }
+        });
 
-        webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
-
-        // Carregar a URL atual
-        webView.loadUrl(currentUrl);
+        openExcelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openExcel();
+            }
+        });
 
         // Configurar o ImageButton para abrir o diálogo de senha
         actionButton.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +81,37 @@ public class MainActivity extends AppCompatActivity {
                 webView.reload(); // Recarregar a página atual
             }
         });
+
+        // Exibir o Toast se o URL for o padrão
+        if (currentUrl.equals(defaultUrl)) {
+            showToastForThreeSeconds("O URL do Forms precisa de ser atualizado");
+        }
+    }
+
+    private void loadWebView(String url) {
+        buttonContainer.setVisibility(View.GONE);
+        webViewContainer.setVisibility(View.VISIBLE);
+        refreshButton.setVisibility(View.VISIBLE); // Tornar o botão de atualização visível
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setCacheMode(android.webkit.WebSettings.LOAD_NO_CACHE);
+        webView.loadUrl(url);
+    }
+
+    private void openExcel() {
+        // URL do arquivo Excel (modificar conforme necessário)
+        String excelUrl = "https://www.example.com/your-excel-file.xlsx";
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(excelUrl), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+        Intent chooser = Intent.createChooser(intent, "Abrir Excel");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(chooser);
+        } else {
+            Toast.makeText(this, "Nenhum aplicativo disponível para abrir o Excel", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showPasswordDialog() {
@@ -117,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.apply();
 
                     // Atualizar o WebView com o novo URL
-                    webView.loadUrl(currentUrl);
+                    loadWebView(currentUrl);
                 } else {
                     Toast.makeText(MainActivity.this, "URL cannot be empty!", Toast.LENGTH_SHORT).show();
                 }

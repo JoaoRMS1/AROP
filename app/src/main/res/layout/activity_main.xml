@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Área de Botões no topo -->
     <LinearLayout
@@ -29,20 +30,57 @@
             android:src="@drawable/humbleicons__refresh"
             android:contentDescription="Refresh Button"
             android:background="?attr/selectableItemBackground"
-            android:elevation="8dp" />
-
+            android:elevation="8dp"
+            android:visibility="gone" /> <!-- Inicialmente invisível -->
     </LinearLayout>
 
     <!-- Área do WebView abaixo dos botões -->
     <FrameLayout
+        android:id="@+id/webview_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:visibility="gone"> <!-- Inicialmente invisível -->
 
         <WebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </FrameLayout>
+
+    <!-- Espaço para centralizar os botões na tela -->
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Botões para abrir o Forms e o Excel -->
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"> <!-- Centralizar horizontalmente -->
+
+        <Button
+            android:id="@+id/open_forms_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inserir OP" />
+
+        <Button
+            android:id="@+id/open_excel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver tabela"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+    <!-- Espaço para centralizar os botões na tela -->
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>
